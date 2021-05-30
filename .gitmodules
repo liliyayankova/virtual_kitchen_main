@@ -1,0 +1,12 @@
+[submodule "login"]
+	path = login
+	url = https://gitlab.eps.surrey.ac.uk/ly00240/advanced_coursework.git
+[submodule "recipe"]
+	path = recipe
+	url = https://liliyayankova@bitbucket.org/kobikamalendran/recipeservice.git
+[submodule "kitchen"]
+	path = kitchen
+	url = https://liliyayankova@bitbucket.org/kobikamalendran/kitchenservice.git
+[submodule "main"]
+	path = main
+	url = https://liliyayankova@bitbucket.org/kobikamalendran/mainapplication.git
