@@ -290,7 +290,7 @@ h1,h2,h3,h4,h5,h6{
     position: absolute;
     left: 50%;
     top: 50%;
-    margin-left: -10%;
+    margin-left: -18%;
     margin-top: -12.5%;
     margin-bottom:30px;
     background: -webkit-linear-gradient(to right, #ff4b2b, #ff416c);
@@ -301,6 +301,23 @@ h1,h2,h3,h4,h5,h6{
     text-align: center;
     vertical-align: middle;
 }
+#box-element4{
+    box-shadow: 10px 10px 40px 10px rgba(0, 0, 0, 0.35);
+    padding: 10px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -15%;
+     margin-top: -12.5%;
+     margin-bottom:30px;
+     background: -webkit-linear-gradient(to right, #ff4b2b, #ff416c);
+     background: linear-gradient(to right, #ff4b2b, #ff416c);
+     background-repeat: no-repeat;
+     background-size: cover;
+     background-position: 0 0;
+     text-align: center;
+     vertical-align: middle;
+ }
 .box-element3{
     box-shadow: 10px 10px 40px 10px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
