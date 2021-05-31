@@ -1,0 +1,44 @@
+version: '3'
+
+services:
+  userdb:
+    build: ./sql
+    image: mysql:8.0
+    container_name: user_db
+    volumes:
+         - dbdata:/var/lib/mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: userRoot
+      MYSQL_DATABASE: userdb
+      MYSQL_USER: service_user
+      MYSQL_PASSWORD: service_user
+    ports:
+      - "9906:3306"
+    expose:
+      - "9906"
+    networks:
+      - login_network
+
+  web:
+    build: ./php
+    image: php:7.2.2-apache
+    container_name: php_web
+    depends_on:
+      - userdb
+    volumes:
+      - ./php/:/var/www/html/
+    ports:
+      - "8000:80"
+    networks:
+      - login_network
+    stdin_open: true
+    tty: true
+
+volumes:
+  dbdata:
+
+networks:
+  login_network:
+    driver: bridge

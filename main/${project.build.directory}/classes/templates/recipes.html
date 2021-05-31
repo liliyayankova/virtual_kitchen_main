@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Virtual Kitchen</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
+
+    <meta name="viewpoint" content="width=device-width,
+          initial-scale=1, maximum-scale=1, minimum-scale=1" />
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript"></script>
+</head>
+<body style="background-color: #fff2CC;">
+<!--<h1><span th:text="${username}"></span></h1>-->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="recipes" style="color: white">VirtualKitchen</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{/recipes}" style="color: white">Kitchens <span class="sr-only"></span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/basket}" style="color: white">Basket</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/showOrders}" style="color: white">Orders</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/about}" style="color: white">About us</a>
+            </li>
+
+        </ul>
+    </div>
+    <div>
+        <a class="btn btn-warning" style="position: relative; right: 10px;" href="/logout"> Logout </a>
+
+        <!--        <?php-->
+<!--              if (isset($_SESSION['ID'])){-->
+<!--              echo $_SESSION['ID'];-->
+<!--        ?>-->
+<!--        <a href="./logout.php" class="btn btn-warning"-->
+<!--           style="position: relative; right: 10px;"-->
+<!--        >-->
+<!--            Logout-->
+<!--        </a>-->
+<!--        <?php-->
+<!--            } else{-->
+<!--        ?>-->
+
+<!--        <a href="./index.html" class="btn btn-warning"-->
+<!--           style="position: relative; right: 10px;"-->
+<!--        >-->
+<!--            Login-->
+<!--        </a>-->
+<!--        <?php } ?>-->
+    </div>
+</nav>
+
+<!--<h1><span th:text="${currentKitchen.kitchenName}"></span></h1>-->
+
+
+
+
+
+<div class="box-element2">
+    <h2 style="text-align: center"><span style="color: white" th:text="${currentKitchen.kitchenName}"></span></h2>
+    <hr style="height:2px; width:100%; border-width:2; color:white; background-color:white; opacity:100%; border-radius: 2px;">
+
+</div>
+
+<br>
+<form>
+        <table class="box-element" th:if="${ not#lists.isEmpty(kitchenRecipes)}">
+            <tr>
+                <th style="color: white; font-size: 28px; margin-bottom: 20px; padding: 20px;">
+                Available Meals
+            </tr>
+
+            <br>
+            <tr>
+                <th style="padding-left: 50px; color: white; font-size: 22px; margin-bottom: 20px;">Image <hr style="height:2px; width:390%; border-width:2; color:white; background-color:white; opacity:100%; border-radius: 2px;">
+                </th>
+                <th style="padding-left: 120px!important; color: white; font-size: 22px; margin-bottom: 20px;">Meal</th>
+                <th style="padding-left: 163px!important; color: white; font-size: 22px; margin-bottom: 20px;">Calories</th>
+                <th style=" color: white; font-size: 22px; margin-bottom: 20px;">Quantity</th>
+                <th style="padding-left: 130px!important; color: white; font-size: 22px; margin-bottom: 20px;">Order<hr style="height:2px; width:40%; border-width:2; color:white; background-color:white; opacity:100%; border-radius: 2px;">
+                </th>
+            </tr>
+
+            <tr th:each="kitchenRecipe : ${kitchenRecipes}">
+                <td style="float: left!important; margin-left: 10px!important; margin-bottom: 15px; margin-top: 20px;"><img class="row-image" src="https://images.squarespace-cdn.com/content/v1/5bb8da3fc2ff6147bdcca05f/1553017973218-KYHY1H1K7ZSNNMLQ44HK/ke17ZwdGBToddI8pDm48kGTVhCyOiH7i-L11LuRYhAR7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QHyNOqBUUEtDDsRWrJLTmT1gIQjfY7spsayCPMW83-EejTFOLDvZTL4J4hjcl1YxuwYp4jlo-RQ8bqu8cbMZc/CUTLERY+ICON.png">
+                <hr style="height:2px; width:850%; border-width:2; color:white; background-color:white; opacity:100%; border-radius: 2px;">
+                </td>
+                <td style="color: white; margin-bottom: 15px; text-transform: capitalize; text-align: center;"><a style="font-size: 18px!important" th:text="${kitchenRecipe.recipeDto.title}"></a></td>
+                <td style="color: white; margin-bottom: 15px; text-transform: capitalize;"><a style="font-size: 18px!important" th:text="${kitchenRecipe.recipeDto.calories}"></a></td>
+                <td style="color: white; margin-bottom: 15px; text-transform: capitalize; align: center;"><a th:text="${kitchenRecipe.quantity}"></a></td>
+                <td style="color: white; margin-bottom: 15px;"><a class="btn" style="color: white; font-size: 18px;" th:href="@{/order/{kitchenId}/{recipeId}(kitchenId=${kitchenRecipe.kitchenDto.id},recipeId=${kitchenRecipe.recipeDto.id})}">ADD TO BASKET</a></td>
+            </tr>
+
+        </table>
+</form>
+
+
+<!--                <div th:if="${ not#lists.isEmpty(kitchenRecipes)}">-->
+
+<!--                    <div th:each="kitchenRecipe : ${kitchenRecipes}">-->
+<!--                            <div class="cart-row">-->
+<!--                                <div style="flex:2"><img class="row-image" src="https://www.pikpng.com/pngl/b/64-643199_simple-food-coming-soon-food-clipart.png"></div>-->
+
+<!--                                <div style="flex:2; margin-top:50px"><a th:text="${kitchenRecipe.recipeDto.title}"></a></div>-->
+
+<!--                                <div style="flex:1; margin-top:60px; padding-left: 40px"><p th:text="${kitchenRecipe.recipeDto.calories}"></p></div>-->
+
+<!--                                <div style="flex:1; margin-top:60px">-->
+<!--                                        <a th:href="@{/order/{kitchenId}/{recipeId}(kitchenId=${kitchenRecipe.kitchenDto.id},recipeId=${kitchenRecipe.recipeDto.id})}" style="color: white">View</a>-->
+<!--                                </div>-->
+
+<!--                            </div>-->
+
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+
+
+<!--    <form>-->
+
+<!--        <h1> Available meals : </h1>-->
+
+<!--        <table th:if="${ not#lists.isEmpty(kitchenRecipes)}">-->
+<!--            <tr>-->
+<!--                <th>Name</th>-->
+<!--                <th>Calories</th>-->
+<!--                <th>Order</th>-->
+<!--            </tr>-->
+<!--            <tr th:each="kitchenRecipe : ${kitchenRecipes}">-->
+<!--                <td th:text="${kitchenRecipe.recipeDto.title}"></td>-->
+<!--                <td th:text="${kitchenRecipe.recipeDto.calories}"></td>-->
+<!--                <td><a th:href="@{/order/{kitchenId}/{recipeId}(kitchenId=${kitchenRecipe.kitchenDto.id},recipeId=${kitchenRecipe.recipeDto.id})}">View</a>-->
+<!--                </td>-->
+
+<!--            </tr>-->
+
+
+<!--        </table>-->
+
+
+<!--    </form>-->
+
+<h3 style="font-size: 10px; text-align: center">© Virtual Kitchen </h3>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+        crossorigin="anonymous"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+
+</body>
+</html>

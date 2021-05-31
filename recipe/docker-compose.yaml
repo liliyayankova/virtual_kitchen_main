@@ -1,0 +1,41 @@
+version: "3"
+
+services:
+  recipedb:
+    build: ./sql
+    image: mysql:8.0
+    volumes:
+      - reciped:/var/lib/mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: recipeRoot
+      MYSQL_DATABASE: RecipeDb
+      MYSQL_USER: recipe_user
+      MYSQL_PASSWORD: recipe_user
+    ports:
+      - "9907:3306"
+    networks:
+      - recipe_network
+
+  recipeweb:
+    image: recipe-service:latest
+    build: .
+    restart: on-failure
+    ports:
+      - "8085:8085"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://recipedb:3306/RecipeDb?autoReconnect=true&allowPublicKeyRetrieval=true&useSSL=false
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: recipeRoot
+    depends_on:
+      - recipedb
+    networks:
+      - recipe_network
+
+volumes:
+  reciped:
+
+networks:
+  recipe_network:
+    driver: bridge

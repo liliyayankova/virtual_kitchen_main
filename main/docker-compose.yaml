@@ -1,0 +1,41 @@
+version: "3"
+
+services:
+  orderdb:
+    build: ./sql
+    image: mysql:8.0
+    volumes:
+      - orderd:/var/lib/mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: orderRoot
+      MYSQL_DATABASE: OrderDb
+      MYSQL_USER: order_user
+      MYSQL_PASSWORD: order_user
+    ports:
+      - "9909:3306"
+    networks:
+      - main_network
+
+  mainweb:
+    image: main-service:latest
+    build: .
+    restart: on-failure
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://orderdb:3306/OrderDb?autoReconnect=true&allowPublicKeyRetrieval=true&useSSL=false
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: orderRoot
+    depends_on:
+      - orderdb
+    networks:
+      - main_network
+
+volumes:
+  orderd:
+
+networks:
+  main_network:
+    driver: bridge

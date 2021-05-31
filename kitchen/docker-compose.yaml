@@ -1,0 +1,41 @@
+version: "3"
+
+services:
+  kitchendb:
+    build: ./sql
+    image: mysql:8.0
+    volumes:
+      - kitchend:/var/lib/mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: kitchenRoot
+      MYSQL_DATABASE: KitchenDb
+      MYSQL_USER: kitchen_user
+      MYSQL_PASSWORD: kitchen_user
+    ports:
+      - "9908:3306"
+    networks:
+      - kitchen_network
+
+  kitchenweb:
+    image: kitchen-service:latest
+    build: .
+    restart: on-failure
+    ports:
+      - "8086:8086"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://kitchendb:3306/KitchenDb?autoReconnect=true&allowPublicKeyRetrieval=true&useSSL=false
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: kitchenRoot
+    depends_on:
+      - kitchendb
+    networks:
+      - kitchen_network
+
+volumes:
+  kitchend:
+
+networks:
+  kitchen_network:
+    driver: bridge
