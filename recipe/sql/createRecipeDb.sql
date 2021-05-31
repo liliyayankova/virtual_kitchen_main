@@ -4,7 +4,8 @@ go
 CREATE TABLE recipe
 (
 ID INT NOT NULL AUTO_INCREMENT,
-TITLE VARCHAR(20), 
+TITLE VARCHAR(20),
+CALORIES INT,
 PRIMARY KEY (ID)
 );
 go
@@ -13,8 +14,6 @@ CREATE TABLE ingredient
 (
 ID INT NOT NULL AUTO_INCREMENT,
 INGREDIENT_NAME VARCHAR(20),
-BRAND VARCHAR(20),
-CALORIES INT,
 PRIMARY KEY (ID)
 );
 go
@@ -30,69 +29,55 @@ REFERENCES ingredient(id)
 );
 go
 
-INSERT INTO ingredient VALUES (null, 'tomatoes', 'Tesco', 10);
+insert into ingredient(ingredient_name) values("Avocado");
 go
-INSERT INTO ingredient VALUES (null, 'cucumber', 'Tesco', 15);
+insert into ingredient(ingredient_name) values("Chicken");
 go
-INSERT INTO ingredient VALUES (null, 'onion', 'Tesco', 16);
+insert into ingredient(ingredient_name) values("Brown Rice");
 go
-INSERT INTO ingredient VALUES (null, 'cheese', 'Tesco', 17);
+insert into ingredient(ingredient_name) values("Cauliflower");
 go
-INSERT INTO ingredient VALUES (null, 'olives', 'Tesco', 20);
+insert into ingredient(ingredient_name) values("Red Pepper");
 go
-INSERT INTO recipe VALUES (null, 'salad');
+insert into ingredient(ingredient_name) values("Mature Cheddar");
 go
-INSERT INTO ingredient VALUES (null, 'carrots', 'Tesco', 10);
+insert into ingredient(ingredient_name) values("Wholemeal Bread");
 go
-INSERT INTO ingredient VALUES (null, 'tomatoes', 'Tesco', 10);
+
+insert into recipe(title,calories) values("Salad", 350);
 go
-INSERT INTO ingredient VALUES (null, 'potatoes', 'Tesco', 150);
+insert into recipe(title,calories) values("Rice meal",500);
 go
-INSERT INTO ingredient VALUES (null, 'celery', 'Tesco', 100);
+insert into recipe(title,calories) values("Chicken sandwhich",400);
 go
-INSERT INTO ingredient VALUES (null, 'green beans', 'Tesco', 125);
+
+insert into recipe_ingredient(recipe_id,ingredient_id) values(1,1);
 go
-INSERT INTO ingredient VALUES (null, 'corn', 'Tesco', 130);
+insert into recipe_ingredient(recipe_id,ingredient_id) values(1,2);
 go
-INSERT INTO ingredient VALUES (null, 'peas', 'Tesco', 110);
+insert into recipe_ingredient(recipe_id,ingredient_id) values(1,4);
 go
-INSERT INTO ingredient VALUES (null, 'garlic', 'Tesco', 50);
+insert into recipe_ingredient(recipe_id,ingredient_id) values(1,5);
 go
-INSERT INTO recipe VALUES (null, 'soup');
+insert into recipe_ingredient(recipe_id,ingredient_id) values(1,6);
 go
-INSERT INTO ingredient VALUES (null, 'flour', 'Tesco', 250);
+
+insert into recipe_ingredient(recipe_id,ingredient_id) values(2,1);
 go
-INSERT INTO ingredient VALUES (null, 'milk', 'Tesco', 100);
+insert into recipe_ingredient(recipe_id,ingredient_id) values(2,2);
 go
-INSERT INTO ingredient VALUES (null, 'sugar', 'Tesco', 25);
+insert into recipe_ingredient(recipe_id,ingredient_id) values(2,3);
 go
-INSERT INTO ingredient VALUES (null, 'baking powder', 'Tesco', 10);
+insert into recipe_ingredient(recipe_id,ingredient_id) values(2,4);
 go
-INSERT INTO ingredient VALUES (null, 'eggs', 'Tesco', 150);
+insert into recipe_ingredient(recipe_id,ingredient_id) values(2,5);
 go
-INSERT INTO recipe VALUES (null, 'pancakes');
+
+insert into recipe_ingredient(recipe_id,ingredient_id) values(3,1);
 go
-INSERT INTO recipe_ingredient VALUES (1,1);
+insert into recipe_ingredient(recipe_id,ingredient_id) values(3,2);
 go
-INSERT INTO recipe_ingredient VALUES (1,2);
+insert into recipe_ingredient(recipe_id,ingredient_id) values(3,6);
 go
-INSERT INTO recipe_ingredient VALUES (1,3);
-go
-INSERT INTO recipe_ingredient VALUES (1,4);
-go
-INSERT INTO recipe_ingredient VALUES (1,5);
-go
-INSERT INTO recipe_ingredient VALUES (2,6);
-go
-INSERT INTO recipe_ingredient VALUES (2,7);
-go
-INSERT INTO recipe_ingredient VALUES (2,8);
-go
-INSERT INTO recipe_ingredient VALUES (2,9);
-go
-INSERT INTO recipe_ingredient VALUES (3,14);
-go
-INSERT INTO recipe_ingredient VALUES (3,15);
-go
-INSERT INTO recipe_ingredient VALUES (3,16);
+insert into recipe_ingredient(recipe_id,ingredient_id) values(3,7);
 go
