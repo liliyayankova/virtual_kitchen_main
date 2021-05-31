@@ -74,16 +74,14 @@
 
 
 
-   <div id="box-element2" class="header3">
+   <div id="box-element4" class="header3">
         <h1 style="float: center" class="white"> Add To Basket </h1>
         <hr style="height:2px; width:100%; border-width:2; color:white; background-color:white; opacity:100%; border-radius: 2px;">
 
 
-        <h2 style="color: white; text-transform: capitalize; font-size: 24px;">Meal: <span th:text="${recipeDto.title}"></span></h2>
+        <h2 style="color: white; text-transform: capitalize; font-size: 24px;">Meal: <span th:text="${recipeDto.title}"></span>(<span th:text="${recipeDto.calories}"></span>Calories)</h2>
         <h3 style="color: white; font-size:12px">From</h3>
-        <h2 style="color: white"><span th:text="${recipeDto.calories}"></span></h2>
         <h2 style="color: white"><span th:text="${kitchenDto.kitchenName}"></span> - <span th:text="${kitchenDto.town}"></span></h2>
-        <h2 style="color: white"></h2>
 
     <form action="#" th:action="@{/addToBasket}" th:object="${orderFormDto}" method="post">
               <div>
